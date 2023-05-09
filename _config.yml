@@ -1,2 +1,7 @@
 title: ledighedsdato.dk
 email: simon@simplesystemer.dk
+
+collections:
+  konsulenter:
+    output: true
+    permalink: /konsulenter/:path/
