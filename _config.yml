@@ -5,3 +5,11 @@ collections:
   konsulenter:
     output: true
     permalink: /konsulenter/:path/
+
+defaults:
+  -
+    scope:
+      path: "_konsulenter"
+    values:
+      layout: "konsulent"
+

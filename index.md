@@ -4,7 +4,10 @@ title: Konsulenter
 ---
 
 <h1>Konsulenter</h1>
+<div class="konsulentliste">
 
 {% for konsulent in site.konsulenter %}
-- [{{ konsulent.navn }}]({{ konsulent.url }})
+<a href="{{ konsulent.url }}">{{ konsulent.navn }}</a>
 {% endfor %}
+
+</div>

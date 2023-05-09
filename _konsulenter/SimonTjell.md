@@ -1,8 +1,7 @@
 ---
 navn: Simon Tjell
 link: /konsulenter/SimonTjell
-linkedin: konsulent1@eksempel.com
-telefon: 12345678
+linkedin: simontjell
 ledighedsdato: 01/10/2023
 ---
 
