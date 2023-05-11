@@ -2,37 +2,32 @@
 layout: default
 ---
 {::nomarkdown}
-<div id="app">
-  <h1>Konsulenter</h1>
-  <!-- <div>
-    <label for="kompetence-select">Filtrer efter kompetence:</label>
-    <select id="kompetence-select" v-model="selectedKompetencer" multiple @change="updateURL">
-      <option value="">Alle</option>
-      <option v-for="kompetence in kompetencer" :value="kompetence">${ kompetence }</option>
-    </select>
-  </div> -->
-  <div>
-  <label>Filtrer efter kompetencer:</label>
-  <div v-for="kompetence in kompetencer" :key="kompetence">
-    <input type="checkbox" :value="kompetence" v-model="selectedKompetencer" @change="updateURL">
-    <span>${ kompetence }</span>
+<div id="app" class="container">
+    <div class="filter-container">
+    <label>Filtrer efter kompetencer:</label>
+    <div class="checkbox-group">
+      <div v-for="kompetence in kompetencer" :key="kompetence">
+        <input type="checkbox" :value="kompetence" v-model="selectedKompetencer" @change="updateURL" :id="'checkbox-' + kompetence" class="checkbox-input">
+        <label :for="'checkbox-' + kompetence" class="checkbox-button">${ kompetence }</label>
+      </div>
+    </div>
   </div>
-</div>
-
-  <div v-if="filteredKonsulenter.length === 0">
-    <p>Ingen konsulenter matchede dine valgte kriterier.</p>
-  </div>
-  <ul>
-    <li v-for="konsulent in filteredKonsulenter" class="konsulent">
+ 
+  <ul class="konsulent-list">
+    <div v-if="filteredKonsulenter.length === 0">
+        <p>Ingen konsulenter matchede dine valgte kriterier.</p>
+    </div>
+   <li v-for="konsulent in filteredKonsulenter" class="konsulent">
       <a :href="konsulent.link" class="navn">${ konsulent.navn }</a>
       <span class="dato">Ledig fra: ${ konsulent.ledighedsdato }</span>
-      <span class="kompetencer">${konsulent.kompetencer.join(' | ')}</span>
+      <span class="kompetencer">${ konsulent.kompetencer.join(' | ') }</span>
     </li>
   </ul>
 </div>
 {:/nomarkdown}
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
 <script>
   new Vue({
     delimiters: ['${', '}'],
