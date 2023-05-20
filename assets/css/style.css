@@ -31,6 +31,10 @@ ul.konsulent-list {
   border: 1px solid #ddd;
   border-radius: 4px;
   text-align: center;
+  background-color: lightblue;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #999;
 }
 
 .konsulent a {
@@ -64,6 +68,9 @@ ul.konsulent-list {
 .filter-container label {
   margin-right: 10px;
   white-space: nowrap;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 .filter-container .checkbox-group {
@@ -78,10 +85,6 @@ ul.konsulent-list {
 
 .filter-container label.checkbox-button {
   display: inline-block;
-  padding: 8px 16px;
-  margin-bottom: 10px;
-  border-radius: 4px;
-  background-color: white;
   border: 1px solid #ccc;
   cursor: pointer;
 }
