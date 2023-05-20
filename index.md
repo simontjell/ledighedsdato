@@ -1,29 +1,30 @@
 ---
 layout: default
+navn: ledighedsdato.dk
 ---
 {::nomarkdown}
-<div id="app" class="container">
-    <div class="filter-container">
-    <label>Filtrer efter kompetencer:</label>
-    <div class="checkbox-group">
-      <div v-for="kompetence in kompetencer" :key="kompetence">
-        <input type="checkbox" :value="kompetence" v-model="selectedKompetencer" @change="updateURL" :id="'checkbox-' + kompetence" class="checkbox-input">
-        <label :for="'checkbox-' + kompetence" class="checkbox-button">${ kompetence }</label>
+    <div class="filter-container container">
+      <label>Filtrer efter kompetencer:</label>
+      <div class="checkbox-group">
+        <div v-for="kompetence in kompetencer" :key="kompetence">
+          <input type="checkbox" :value="kompetence" v-model="selectedKompetencer" @change="updateURL" :id="'checkbox-' + kompetence" class="checkbox-input">
+          <label :for="'checkbox-' + kompetence" class="checkbox-button tag">${ kompetence }</label>
+        </div>
       </div>
     </div>
+
+  <div class="container">
+    <ul class="konsulent-list">
+      <div v-if="filteredKonsulenter.length === 0">
+          <p>Ingen konsulenter matchede dine valgte kriterier.</p>
+      </div>
+    <li v-for="konsulent in filteredKonsulenter" class="konsulent">
+        <a :href="konsulent.link" class="navn">${ konsulent.navn }</a>
+        <span class="dato">Ledig fra: ${ konsulent.ledighedsdato }</span>
+        <!-- <span class="kompetencer">${ konsulent.kompetencer.join(' | ') }</span> -->
+      </li>
+    </ul>
   </div>
- 
-  <ul class="konsulent-list">
-    <div v-if="filteredKonsulenter.length === 0">
-        <p>Ingen konsulenter matchede dine valgte kriterier.</p>
-    </div>
-   <li v-for="konsulent in filteredKonsulenter" class="konsulent">
-      <a :href="konsulent.link" class="navn">${ konsulent.navn }</a>
-      <span class="dato">Ledig fra: ${ konsulent.ledighedsdato }</span>
-      <span class="kompetencer">${ konsulent.kompetencer.join(' | ') }</span>
-    </li>
-  </ul>
-</div>
 {:/nomarkdown}
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
