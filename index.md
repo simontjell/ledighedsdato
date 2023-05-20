@@ -3,6 +3,9 @@ layout: default
 navn: ledighedsdato.dk
 ---
 {::nomarkdown}
+<div id="app" class="container">
+    <a href="/"><h3 class="title has-text-centered">ledighedsdato.dk</h3></a>
+
     <div class="filter-container container">
       <label>Filtrer efter kompetencer:</label>
       <div class="checkbox-group">
@@ -21,10 +24,10 @@ navn: ledighedsdato.dk
     <li v-for="konsulent in filteredKonsulenter" class="konsulent">
         <a :href="konsulent.link" class="navn">${ konsulent.navn }</a>
         <span class="dato">Ledig fra: ${ konsulent.ledighedsdato }</span>
-        <!-- <span class="kompetencer">${ konsulent.kompetencer.join(' | ') }</span> -->
       </li>
     </ul>
   </div>
+</div>
 {:/nomarkdown}
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -64,22 +67,25 @@ navn: ledighedsdato.dk
     methods: {
       updateURL: function() {
         var params = new URLSearchParams();
-        params.append('kompetencer', this.selectedKompetencer.join(','));
-        history.replaceState({}, '', this.selectedKompetencer.length ? '?' + params.toString() : '/');
+        for(k of this.selectedKompetencer)
+        {
+          params.append('kompetencer', k);
+        }
+        history.replaceState({}, '', '?'+ params.toString());
       },
       loadFilterFromURL: function() {
         var params = new URLSearchParams(window.location.search);
         var kompetencer = params.getAll('kompetencer');
         this.selectedKompetencer = kompetencer;
+        console.log(this.selectedKompetencer);
       }
     },
     created: function() {
       var self = this;
+      self.loadFilterFromURL();
       this.konsulenter.forEach(function(konsulent) {
-         console.log(konsulent.navn)
          konsulent.kompetencer.forEach(function(kompetence) {
           if (!self.kompetencer.includes(kompetence)) {
-            console.log(" - " + kompetence)
             self.kompetencer.push(kompetence);
           }
          })

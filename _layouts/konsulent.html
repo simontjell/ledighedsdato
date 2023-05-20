@@ -2,14 +2,16 @@
 layout: default
 title: {{ page.navn }}
 ---
+<div id="app" class="container">
+    <a href="/"><h3 class="title has-text-centered">ledighedsdato.dk</h3></a>
+    <div class="konsulent">
+        <a class="navn" href="https://linkedin.com/in/{{ page.linkedin }}" target="_blank">
+            <span>{{ page.navn }}</span>
+            <span> (LinkedIn)</span> 
+        </a>
+        <span class="dato">Ledighedsdato: {{ page.ledighedsdato }}</span>
+        <!-- <span class="beskrivelse">{{ content }}</span> -->
+        <span class="kompetencer">{{ page.kompetencer | split: "," | join: " | " }}</span>
 
-<div class="konsulent">
-    <a class="navn" href="https://linkedin.com/in/{{ page.linkedin }}" target="_blank">
-        <span>{{ page.navn }}</span>
-        <span> (LinkedIn)</span> 
-    </a>
-    <span class="dato">Ledighedsdato: {{ page.ledighedsdato }}</span>
-    <!-- <span class="beskrivelse">{{ content }}</span> -->
-    <span class="kompetencer">{{ page.kompetencer | split: "," | join: " | " }}</span>
-
+    </div>
 </div>
